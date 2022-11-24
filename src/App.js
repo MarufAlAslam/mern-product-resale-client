@@ -4,6 +4,7 @@ import Blogs from './Pages/Blogs/Blogs';
 import Broken from './Pages/Broken/Broken';
 import Home from './Pages/Home/Home';
 import Main from './Pages/Main/Main';
+import Products from './Pages/Products/Products';
 
 function App() {
   // routes will be here
@@ -20,6 +21,10 @@ function App() {
         {
           path: 'blogs',
           element: <Blogs></Blogs>
+        },
+        {
+          path: 'products',
+          element: <Products></Products>
         },
         {
           path: '*',
