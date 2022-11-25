@@ -1,0 +1,3 @@
+.progress:indeterminate::after {
+    background-color: white !important
+}

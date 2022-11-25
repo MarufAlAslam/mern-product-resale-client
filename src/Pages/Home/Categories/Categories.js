@@ -1,6 +1,7 @@
 // import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import CategoryCard from './CategoryCard/CategoryCard';
+import './Categories.css';
 
 const Categories = () => {
 
@@ -15,12 +16,22 @@ const Categories = () => {
                 Available Categories
             </h3>
 
-            <div className='grid grid-cols-3 gap-6 mt-5'>
+            {
+                isLoading ?
+                    <div className='flex justify-center items-center w-full my-6'>
+                        <progress className="progress w-56 mx-auto"></progress>
+                    </div>
 
-                {
-                    isLoading ? 'Loading...' : categories.map(category => <CategoryCard key={category._id} category={category}></CategoryCard>)
-                }
-            </div>
+                    :
+                    <div className='grid grid-cols-3 gap-6 mt-5'>
+
+                        {
+                            categories.map(category => <CategoryCard key={category._id} category={category}></CategoryCard>)
+                        }
+                    </div>
+            }
+
+
         </div>
     );
 };
