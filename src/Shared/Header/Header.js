@@ -31,12 +31,12 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='products'>
+                            <NavLink to='/products'>
                                 Products
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='blogs'>
+                            <NavLink to='/blogs'>
                                 Blogs
                             </NavLink>
                         </li>
@@ -46,12 +46,12 @@ const Header = () => {
                 <div className="navbar-end">
                     <ul className='menu menu-horizontal p-0'>
                         <li>
-                            <NavLink to='login'>
+                            <NavLink to='/login'>
                                 Login
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='register'>
+                            <NavLink to='/register'>
                                 Register
                             </NavLink>
                         </li>

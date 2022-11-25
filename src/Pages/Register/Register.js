@@ -3,10 +3,12 @@ import reg from './register.svg'
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
     const { createUser } = useContext(AuthContext)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState('')
     const onSubmit = data => {
         // console.log(data);
@@ -33,6 +35,8 @@ const Register = () => {
 
 
                 setError('')
+                toast.success('User Created Successfully')
+                reset()
             }
             )
             .catch(err => {
@@ -80,8 +84,8 @@ const Register = () => {
                                     }
                                 </p>
 
-                                <p className='mt-4 text-right'>
-                                    Already Have an Account? <Link to='login' className='text-primary'>Login Now</Link>
+                                <p className='mt-4'>
+                                    Already Have an Account? <Link to='/login' className='text-primary'>Login Now</Link>
                                 </p>
 
                                 <div className='divider'>or</div>
@@ -94,6 +98,7 @@ const Register = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div >
     );
 };

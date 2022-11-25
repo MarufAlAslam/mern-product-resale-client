@@ -36,8 +36,8 @@ const Login = () => {
                                 <input className='btn btn-primary w-full mt-4' type="submit" />
 
 
-                                <p className='mt-4 text-right'>
-                                    No Account Yet? <Link to='register' className='text-primary'>Register Now</Link>
+                                <p className='mt-4'>
+                                    No Account Yet? <Link to='/register' className='text-primary'>Register Now</Link>
                                 </p>
 
                                 <div className='divider'>or</div>

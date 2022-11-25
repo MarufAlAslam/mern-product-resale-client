@@ -18,7 +18,7 @@ const Banner = () => {
                         Here you can buy and sell used Camera. You can also find new Camera for your home, office, shops.
                     </p>
 
-                    <Link to='products' className='btn btn-primary rounded-none mt-5'>
+                    <Link to='/products' className='btn btn-primary rounded-none mt-5'>
                         SHOP NOW
                     </Link>
 
