@@ -13,7 +13,7 @@ const Register = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const from = location.state?.from?.pathname || '/login'
+    const from = location.state?.from?.pathname || '/dashboard'
     const onSubmit = data => {
         // console.log(data);
         createUser(data.email, data.password)
@@ -40,6 +40,7 @@ const Register = () => {
 
                 setError('')
                 toast.success('User Created Successfully')
+                navigate(from, { replace: true })
                 reset()
             }
             )

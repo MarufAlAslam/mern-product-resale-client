@@ -15,7 +15,7 @@ const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
-    const from = location.state?.from?.pathname || '/login'
+    const from = location.state?.from?.pathname || '/dashboard'
     const onSubmit = data => {
         // console.log(data);
         login(data.email, data.password)

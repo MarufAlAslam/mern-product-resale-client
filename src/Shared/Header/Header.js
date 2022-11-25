@@ -64,7 +64,7 @@ const Header = () => {
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <button onClick={handleLogout} className='btn btn-error text-black'>
+                                        <button onClick={handleLogout} className='btn btn-error text-black ml-2'>
                                             Logout
                                         </button>
                                     </li>
