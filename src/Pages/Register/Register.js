@@ -1,12 +1,43 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import reg from './register.svg'
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [error, setError] = useState('')
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
+        createUser(data.email, data.password)
+            .then(res => {
+                console.log(res);
+
+
+                // post user infomation to mongo database
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: data.email,
+                        role: data.role,
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                    })
+
+
+                setError('')
+            }
+            )
+            .catch(err => {
+                setError(err.message)
+            })
     };
     return (
         <div className='py-10 lg:w-5/6 w-full mx-auto'>
@@ -43,9 +74,14 @@ const Register = () => {
 
                                 <input className='btn btn-primary w-full mt-4' type="submit" />
 
+                                <p>
+                                    {
+                                        error && <p className='text-error my-3 text-center'>{error}</p>
+                                    }
+                                </p>
 
                                 <p className='mt-4 text-right'>
-                                    No Account Yet? <Link to='register' className='text-primary'>Register Now</Link>
+                                    Already Have an Account? <Link to='login' className='text-primary'>Login Now</Link>
                                 </p>
 
                                 <div className='divider'>or</div>
