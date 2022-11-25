@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // import { FaGoogle } from 'react-icons/fa'
 
 const Login = () => {
-    const { login } = useContext(AuthContext)
+    const { login, loginWithPopup } = useContext(AuthContext)
     const [error, setError] = useState('')
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -26,6 +26,16 @@ const Login = () => {
             }
             )
     };
+    const handleGoogleLogin = () => {
+        loginWithPopup()
+            .then(res => {
+                console.log(res);
+                toast.success('Login Successfully')
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
     return (
         <div className='py-10 lg:w-5/6 w-full mx-auto'>
             <div className='grid gap-6 lg:grid-cols-2 grid-cols-1'>
@@ -64,10 +74,11 @@ const Login = () => {
 
                                 <div className='divider'>or</div>
 
-                                <button className='btn btn-primary'>
-                                    Login With Google
-                                </button>
+
                             </form>
+                            <button className='btn btn-primary' onClick={handleGoogleLogin}>
+                                Login With Google
+                            </button>
                         </div>
                     </div>
                 </div>
