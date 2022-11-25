@@ -76,7 +76,7 @@ const Register = () => {
                                 {errors.password && <p className='text-error my-3 text-left'>Password is required</p>}
 
 
-                                <input className='btn btn-primary w-full mt-4' type="submit" />
+                                <input className='btn btn-primary w-full mt-4' value="register" type="submit" />
 
                                 <p>
                                     {

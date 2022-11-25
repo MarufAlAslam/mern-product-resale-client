@@ -1,20 +1,35 @@
-import React from 'react';
-import login from './login.svg'
+import React, { useContext, useState } from 'react';
+import loginImg from './login.svg'
 import './Login.css'
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Utils/Contexts/AuthProvider';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { FaGoogle } from 'react-icons/fa'
 
 const Login = () => {
+    const { login } = useContext(AuthContext)
+    const [error, setError] = useState('')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
+        login(data.email, data.password)
+            .then(res => {
+                console.log(res);
+                toast.success('Login Successfully')
+            }
+            )
+            .catch(err => {
+                setError(err.message);
+            }
+            )
     };
     return (
         <div className='py-10 lg:w-5/6 w-full mx-auto'>
             <div className='grid gap-6 lg:grid-cols-2 grid-cols-1'>
                 <div className='text-center my-auto'>
-                    <img src={login} className="loginImg" alt="" />
+                    <img src={loginImg} className="loginImg" alt="" />
                 </div>
                 <div className='text-center my-auto'>
                     <div className='card bg-gray-800 w-full'>
@@ -33,7 +48,13 @@ const Login = () => {
                                 {errors.password && <p className='text-error my-3 text-left'>Password is required</p>}
 
 
-                                <input className='btn btn-primary w-full mt-4' type="submit" />
+                                <input className='btn btn-primary w-full mt-4' value="Login" type="submit" />
+
+                                <p>
+                                    {
+                                        error && <p className='text-error my-3 text-center'>{error}</p>
+                                    }
+                                </p>
 
 
                                 <p className='mt-4'>
@@ -50,6 +71,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };
