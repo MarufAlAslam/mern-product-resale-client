@@ -11,13 +11,14 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const { login } = useContext(AuthContext)
     const [error, setError] = useState('')
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         // console.log(data);
         login(data.email, data.password)
             .then(res => {
                 console.log(res);
                 toast.success('Login Successfully')
+                reset()
             }
             )
             .catch(err => {

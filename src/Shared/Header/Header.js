@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import logo from './logo.png'
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext)
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                toast.success('logged out')
+            }
+            )
+    }
     return (
         <div>
             <div className="navbar bg-gray-700">
@@ -44,20 +54,46 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <ul className='menu menu-horizontal p-0'>
-                        <li>
-                            <NavLink to='/login'>
-                                Login
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to='/register'>
-                                Register
-                            </NavLink>
-                        </li>
-                    </ul>
+                    {
+                        user?.uid ?
+                            <>
+                                <ul className='menu menu-horizontal p-0'>
+                                    <li>
+                                        <NavLink to='/dashboard'>
+                                            Dashboard
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <button onClick={handleLogout} className='btn btn-error text-black'>
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </>
+
+                            :
+
+                            <>
+                                <ul className='menu menu-horizontal p-0'>
+                                    <li>
+                                        <NavLink to='/login'>
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to='/register'>
+                                            Register
+                                        </NavLink>
+                                    </li>
+                                </ul>
+                            </>
+
+                    }
+
+
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
