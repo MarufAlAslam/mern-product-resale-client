@@ -12,7 +12,7 @@ import {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={new QueryClient}>
+    <QueryClientProvider client={new QueryClient()}>
       <App />
     </QueryClientProvider>
   </React.StrictMode>

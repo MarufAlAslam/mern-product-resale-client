@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
 import Products from './Pages/Products/Products';
+import Register from './Pages/Register/Register';
 
 function App() {
   // routes will be here
@@ -30,6 +31,10 @@ function App() {
         {
           path: 'login',
           element: <Login></Login>
+        },
+        {
+          path: 'register',
+          element: <Register></Register>
         },
         {
           path: '*',
