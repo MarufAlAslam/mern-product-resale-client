@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import loginImg from './login.svg'
 import './Login.css'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,12 +12,17 @@ const Login = () => {
     const { login, loginWithPopup } = useContext(AuthContext)
     const [error, setError] = useState('')
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/login'
     const onSubmit = data => {
         // console.log(data);
         login(data.email, data.password)
             .then(res => {
                 console.log(res);
                 toast.success('Login Successfully')
+                navigate(from, { replace: true })
                 reset()
             }
             )
@@ -31,6 +36,7 @@ const Login = () => {
             .then(res => {
                 console.log(res);
                 toast.success('Login Successfully')
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 console.log(err);

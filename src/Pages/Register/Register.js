@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import reg from './register.svg'
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,10 @@ const Register = () => {
     const { createUser, loginWithPopup } = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState('')
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/login'
     const onSubmit = data => {
         // console.log(data);
         createUser(data.email, data.password)
@@ -49,6 +53,7 @@ const Register = () => {
             .then(res => {
                 console.log(res);
                 toast.success('Login Successfully')
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 console.log(err);
