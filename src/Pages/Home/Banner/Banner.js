@@ -15,7 +15,7 @@ const Banner = () => {
                     <h3 className='lsp-3'>SHOP TO GET WHAT YOU LOVE</h3>
                     <h1 className='text-4xl font-bold mb-4'>Be Ready To Spoil Every Moment</h1>
                     <p>
-                        Here you can buy and sell used furniture. You can also find new furniture for your home, office, shops.
+                        Here you can buy and sell used Camera. You can also find new Camera for your home, office, shops.
                     </p>
 
                     <Link to='products' className='btn btn-primary rounded-none mt-5'>

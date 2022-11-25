@@ -8,7 +8,7 @@ const Home = () => {
 
     useEffect(() => {
         AOS.init()
-        document.title = 'Home | Furniture';
+        document.title = 'Home | Camera';
     }, []);
 
     return (
