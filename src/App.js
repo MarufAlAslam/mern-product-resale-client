@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
+import AddProduct from './Pages/AddProduct/AddProduct';
 import Blogs from './Pages/Blogs/Blogs';
 import Broken from './Pages/Broken/Broken';
 import Dashboard from './Pages/Dashboard/Dashboard';
@@ -52,6 +53,10 @@ function App() {
         {
           path: '/dashboard',
           element: <Dashboard></Dashboard>
+        },
+        {
+          path: `/dashboard/add-product`,
+          element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
         }
       ]
     }
