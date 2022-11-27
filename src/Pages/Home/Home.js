@@ -19,7 +19,6 @@ const Home = () => {
 
     useEffect(() => {
         AOS.init()
-        document.title = 'Home | Camera';
     }, []);
 
 
