@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AddProductForm = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState("");
     const [category, setCategory] = useState([]);
     const imgHostKey = process.env.REACT_APP_imgbb_key;
@@ -77,6 +77,8 @@ const AddProductForm = () => {
                         .catch((error) => {
                             setError('Error:', error);
                         });
+
+                    reset()
                 }
             })
             .catch(err => {
