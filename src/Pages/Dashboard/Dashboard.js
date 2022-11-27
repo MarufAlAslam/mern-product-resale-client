@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import Admin from './Admin';
+import MyProducts from './MyProducts/MyProducts';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -16,7 +17,7 @@ const Dashboard = () => {
     )
     return (
         <div className='lg:flex'>
-            <div className='xl:w-1/5 lg:2/5 w-full min-h-screen bg-gray-700 p-5'>
+            <div className='xl:w-1/5 lg:w-2/5 w-full min-h-screen bg-gray-700 p-5'>
                 {
                     loggedInUser.role === 'admin' ?
                         <Admin></Admin>
@@ -27,11 +28,12 @@ const Dashboard = () => {
                                 <div className='divider'></div>
                                 <ul>
                                     <li className='text-white font-bold'>
-                                        <Link to='/dashboard/add-product' className='block w-full p-2 my-2 hover:bg-gray-800'>Add a Product</Link>
+                                        <Link to='/dashboard/my-product' className='block w-full p-2 my-2 bg-gray-800 hover:bg-gray-800'>My Products</Link>
                                     </li>
                                     <li className='text-white font-bold'>
-                                        <Link to='/dashboard/my-product' className='block w-full p-2 my-2 hover:bg-gray-800'>My Products</Link>
+                                        <Link to='/dashboard/add-product' className='block w-full p-2 my-2 hover:bg-gray-800'>Add a Product</Link>
                                     </li>
+
                                     <li className='text-white font-bold'>
                                         <Link to='/dashboard/my-buyers' className='block w-full p-2 my-2 hover:bg-gray-800'>My Buyers</Link>
                                     </li>
@@ -49,7 +51,7 @@ const Dashboard = () => {
                             </>
                 }
             </div>
-            <div className='p-8'>
+            <div className='p-8 xl:w-4/5 lg:w-3/5 w-full min-h-screen'>
                 {
                     isLoading ?
                         (
@@ -59,9 +61,14 @@ const Dashboard = () => {
                         )
                         :
                         (
-                            <div className='text-right'>
-                                You are logged in as a {loggedInUser.role}
-                            </div>
+                            loggedInUser.role === 'seller' ?
+                                <MyProducts></MyProducts>
+                                :
+                                (
+                                    <div className='text-right'>
+                                        You are logged in as a {loggedInUser.role}
+                                    </div>
+                                )
                         )
                 }
             </div>

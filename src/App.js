@@ -42,6 +42,10 @@ function App() {
           element: <Register></Register>
         },
         {
+          path: '/blogs',
+          element: <Blogs></Blogs>
+        },
+        {
           path: '/category/:id',
           element: <PrivateRoute><CategoryDetails></CategoryDetails></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
