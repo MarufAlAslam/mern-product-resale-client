@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from "axios";
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import AddProductForm from './AddProductForm';
 
 const AddProduct = () => {
     // const userData = useLoaderData()/
@@ -22,7 +23,7 @@ const AddProduct = () => {
             {
                 user.email ? (
                     role === 'seller' ? (
-                        "Welcome"
+                        <AddProductForm />
                     )
                         :
                         navigate('/dashboard')
