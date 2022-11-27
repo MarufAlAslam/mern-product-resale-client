@@ -4,6 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Categories from './Categories/Categories';
 import AdvertisedItems from './AdvertisedItems/AdvertisedItems';
+import RecentlyAdded from './RecentlyAdded/RecentlyAdded';
 
 
 const Home = () => {
@@ -30,6 +31,8 @@ const Home = () => {
                 countAdvertisedItems > 0 && <AdvertisedItems></AdvertisedItems>
             }
             <Categories></Categories>
+
+            <RecentlyAdded></RecentlyAdded>
         </div>
     );
 };
