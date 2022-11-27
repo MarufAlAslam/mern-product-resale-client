@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './AddProductForm.css'
 
 const AddProductForm = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [error, setError] = useState("");
     const [category, setCategory] = useState([]);
     const imgHostKey = process.env.REACT_APP_imgbb_key;
+    const [isUploading, setIsUploading] = useState(false);
     // console.log(imgHostKey);
     // const [todaysDate, setTodaysDate] = useState("");
 
@@ -33,6 +35,7 @@ const AddProductForm = () => {
 
     const onSubmit = data => {
         // Add product to database
+        setIsUploading(true);
 
         const image = data.img[0];
         // console.log(img);
@@ -79,6 +82,7 @@ const AddProductForm = () => {
                         });
 
                     reset()
+                    setIsUploading(false);
                 }
             })
             .catch(err => {
@@ -94,6 +98,14 @@ const AddProductForm = () => {
 
     return (
         <div className='py-10 lg:w-5/6 w-full mx-auto'>
+            {
+                isUploading &&
+                (
+                    <div className='isUploading'>
+                        Uploading...
+                    </div>
+                )
+            }
             <h3 className='text-center text-3xl font-bold'>Add Product</h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className='mt-5 lg:w-1/2 w-full mx-auto'>

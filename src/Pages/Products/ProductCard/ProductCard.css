@@ -1,0 +1,6 @@
+.productImg {
+    width: 100%;
+    height: 250px;
+    object-position: center;
+    object-fit: cover;
+}
