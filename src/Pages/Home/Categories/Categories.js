@@ -32,6 +32,7 @@ const Categories = () => {
             }
 
 
+
         </div>
     );
 };

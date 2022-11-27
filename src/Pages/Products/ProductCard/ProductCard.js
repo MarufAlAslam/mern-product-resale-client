@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
 import './ProductCard.css'
 
 const ProductCard = ({ product }) => {
+    const { user } = useContext(AuthContext)
     // console.log(product);
-    const { _id, img, name, price, category, seller, location, today } = product;
+    const { _id, img, name, price, category, seller, location, today, selleremail } = product;
+    // console.log(selleremail)
     return (
         <div className='card bg-gray-800 shadow relative productCard'>
             <span className='bg-gray-800 p-2 absolute top-2 right-2 text-xs'>
@@ -35,9 +38,24 @@ const ProductCard = ({ product }) => {
                     <span className='text-primary'>{today}</span>
                 </p>
 
-                <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
-                    Details
-                </Link>
+                {
+                    user ? (
+                        user?.email === selleremail ? (
+                            <h3 className='text-primary'>Hey! You Are The Seller of this product</h3>
+                        ) : (
+                            <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
+                                Details
+                            </Link>
+                        )
+                    ) :
+                        (
+                            <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
+                                Details
+                            </Link>
+                        )
+                }
+
+
             </div>
         </div>
     );

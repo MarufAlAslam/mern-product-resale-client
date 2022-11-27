@@ -1,13 +1,16 @@
 // import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa'
-// import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
+import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
 
-const CategoriedCard = ({ product }) => {
+
+const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
     const currentYear = new Date().getFullYear()
-    // const { user } = useContext(AuthContext)
-    const { img, name, description, location, originalprice, price, yearofpurchase, today, seller, selleremail } = product;
+    const { user } = useContext(AuthContext)
+    const { _id, img, name, description, condition, location, originalprice, price, yearofpurchase, today, seller, selleremail } = product;
     const [verified, setVerified] = useState(false)
+
+
 
 
     useEffect(() => {
@@ -15,9 +18,17 @@ const CategoriedCard = ({ product }) => {
             .then(res => res.json())
             .then(data => {
                 setVerified(data.isVerified);
+                // setModalVisibility(true)
             }
             )
     }, [selleremail])
+
+
+
+
+
+    // console.log(modalData)
+
 
 
 
@@ -29,6 +40,10 @@ const CategoriedCard = ({ product }) => {
                     <h3 className='text-xl font-bold mb-3'>{name}</h3>
                     <p>
                         {description}
+                    </p>
+                    <p className='mt-3'>
+                        <span>Condition: </span>
+                        <span className='text-primary'>{condition}</span>
                     </p>
                     <div className='divider'></div>
                     <p>
@@ -65,9 +80,16 @@ const CategoriedCard = ({ product }) => {
 
                     <div className='divider'></div>
 
-                    <button className='btn btn-primary w-full mt-5'>
-                        Book now
-                    </button>
+                    {
+                        user?.email === selleremail ? (
+                            <h3 className='text-primary'>Hey! You Are The Seller of this product</h3>
+                        ) : (
+                            <button className='btn btn-primary w-full mt-4' onClick={() => handleModal(_id)}>
+                                Book Now
+                            </button>
+                        )
+                    }
+
                 </div>
             </div>
         </div>
