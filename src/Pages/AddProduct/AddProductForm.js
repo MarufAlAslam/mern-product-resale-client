@@ -106,7 +106,7 @@ const AddProductForm = () => {
                     </div>
                 )
             }
-            <h3 className='text-center text-3xl font-bold'>Add Product</h3>
+            <h3 className='text-center text-2xl font-bold'>Add Product</h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className='mt-5 lg:w-1/2 w-full mx-auto'>
 

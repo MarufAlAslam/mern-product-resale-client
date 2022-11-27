@@ -1,21 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import ProductCard from './ProductCard/ProductCard';
+import ProductCard from '../../Products/ProductCard/ProductCard';
 
-const Products = () => {
-    // react query to fetch products
+const AdvertisedItems = () => {
 
-    const { data: products = [], isLoading } = useQuery({
-        queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/products')
+    const { data: advertisedProducts = [], isLoading } = useQuery({
+        queryKey: ['advertisedProducts'],
+        queryFn: () => fetch('http://localhost:5000/advertisedProducts')
             .then(res => res.json())
     })
-
-
     return (
-        <div className='mx-auto lg:w-5/6 w-full py-10'>
+        <div className='py-10 lg:w-5/6 w-full mx-auto'>
             <h3 className='text-2xl font-bold text-center'>
-                All Products
+                Advertised Items
             </h3>
 
             {
@@ -29,7 +26,7 @@ const Products = () => {
                     (
                         <div className='product-grid grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-8'>
                             {
-                                products.map(product => <ProductCard key={product._id} product={product}></ProductCard>)
+                                advertisedProducts.map(product => <ProductCard key={product._id} product={product}></ProductCard>)
                             }
                         </div>
                     )
@@ -38,4 +35,4 @@ const Products = () => {
     );
 };
 
-export default Products;
+export default AdvertisedItems;
