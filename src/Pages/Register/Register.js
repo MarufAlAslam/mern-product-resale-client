@@ -30,6 +30,7 @@ const Register = () => {
                     body: JSON.stringify({
                         email: data.email,
                         role: data.role,
+                        isVerified: false
                     })
                 })
                     .then(res => res.json())

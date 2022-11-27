@@ -1,8 +1,26 @@
-import React from 'react';
+// import { useQuery } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import { FaCheckCircle } from 'react-icons/fa'
+// import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
 
 const CategoriedCard = ({ product }) => {
     const currentYear = new Date().getFullYear()
-    const { img, name, description, location, price, yearofpurchase, today, seller } = product;
+    // const { user } = useContext(AuthContext)
+    const { img, name, description, location, originalprice, price, yearofpurchase, today, seller, selleremail } = product;
+    const [verified, setVerified] = useState(false)
+
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/user?email=${selleremail}`)
+            .then(res => res.json())
+            .then(data => {
+                setVerified(data.isVerified);
+            }
+            )
+    }, [selleremail])
+
+
+
     return (
         <div className='card bg-gray-800 categoriedCard'>
             <div className='card-body flex flex-row justify-center'>
@@ -18,7 +36,7 @@ const CategoriedCard = ({ product }) => {
                     </p>
                     <p>
                         <span>Original Price: </span>
-                        <span className='text-primary'>Not Added</span>
+                        <strike className='text-primary'>${originalprice}</strike>
                     </p>
                     <p>
                         <span>Re-Sell Price: </span>
@@ -36,9 +54,13 @@ const CategoriedCard = ({ product }) => {
                         <span>Posted On: </span>
                         <span className='text-primary'>{today}</span>
                     </p>
-                    <p>
-                        <span>Seller: </span>
-                        <span className='text-primary'>{seller}</span>
+                    <p className='flex flex-row items-center'>
+                        <span className='inline-block mr-1'>Seller: </span>
+                        <span className='text-primary'>{seller}</span> {
+                            verified ? <span className='text-success'>
+                                <FaCheckCircle className='ml-1' />
+                            </span> : <span></span>
+                        }
                     </p>
 
                     <div className='divider'></div>

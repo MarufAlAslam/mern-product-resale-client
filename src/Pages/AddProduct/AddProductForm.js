@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import './AddProductForm.css'
 
 const AddProductForm = () => {
@@ -11,6 +12,7 @@ const AddProductForm = () => {
     const [category, setCategory] = useState([]);
     const imgHostKey = process.env.REACT_APP_imgbb_key;
     const [isUploading, setIsUploading] = useState(false);
+    const { user } = useContext(AuthContext)
     // console.log(imgHostKey);
     // const [todaysDate, setTodaysDate] = useState("");
 
@@ -51,9 +53,11 @@ const AddProductForm = () => {
                 if (imgData.success) {
                     console.log(imgData.data.url);
                     const productData = {
-                        seller: data.seller,
+                        seller: user.email.split('@')[0],
+                        selleremail: user.email,
                         name: data.name,
                         img: imgData.data.url,
+                        originalprice: data.originalprice,
                         price: data.price,
                         category: data.category,
                         condition: data.condition,
@@ -110,11 +114,11 @@ const AddProductForm = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className='mt-5 lg:w-1/2 w-full mx-auto'>
 
-                <div className='input-field my-3'>
+                {/* <div className='input-field my-3'>
                     <input type="text" {...register("seller", { required: true })} name="seller" placeholder="Enter Seller Name || The name you want to display with products" className="input input-bordered input-primary w-full" />
 
                     {errors.seller && <p className='text-error my-3 text-left'>Seller Name is required</p>}
-                </div>
+                </div> */}
 
                 <div className='input-field my-3'>
                     <input type="text" {...register("name", { required: true })} name="name" placeholder="Enter Product Name" className="input input-bordered input-primary w-full" />
@@ -129,11 +133,16 @@ const AddProductForm = () => {
                     {errors.img && <p className='text-error my-3 text-left'>Product Image is required</p>}
                 </div>
 
+                <div className='input-field my-3'>
+                    <input type="number" {...register("originalprice", { required: true })} name="originalprice" placeholder="Enter Original Price" className="input input-bordered input-primary w-full" />
+
+                    {errors.originalprice && <p className='text-error my-3 text-left'>Original Price is required</p>}
+                </div>
 
                 <div className='input-field my-3'>
-                    <input type="number" {...register("price", { required: true })} name="price" placeholder="Enter Product Price" className="input input-bordered input-primary w-full" />
+                    <input type="number" {...register("price", { required: true })} name="price" placeholder="Enter Re-Sell Price" className="input input-bordered input-primary w-full" />
 
-                    {errors.price && <p className='text-error my-3 text-left'>Product Price is required</p>}
+                    {errors.price && <p className='text-error my-3 text-left'>Re-Sell Price is required</p>}
                 </div>
 
                 <div className='input-field my-3'>
