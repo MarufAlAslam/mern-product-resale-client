@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';

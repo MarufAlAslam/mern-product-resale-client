@@ -26,6 +26,26 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
+
+    // update role to user on database by email
+    // fetch(`http://localhost:5000/user?email=${user.email}`, {
+    //     method: 'PATCH',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         email: user.email,
+    //         role: 'user'
+    //     })
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         if (data) {
+    //             console.log('user role updated')
+    //         }
+    //     })
+
     // login with email popup
     const loginWithPopup = () => {
         setLoading(true)
@@ -34,11 +54,64 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
+
     // unsubscribe from auth
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
+
+
+            // check whether the user already have a role or not
+            // if not then update the role to user
+            if (currentUser) {
+                fetch(`http://localhost:5000/user?email=${currentUser.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            fetch('http://localhost:5000/user', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    email: currentUser.email,
+                                    role: 'user',
+                                    isVerified: false
+                                })
+                            })
+                                .then(res => res.json())
+                                .then(data => {
+                                    console.log(data);
+                                })
+                        }
+                    })
+            }
+
+
+
+            // patch current user data to database
+            // fetch(`http://localhost:5000/user`, {
+            //     method: 'PATCH',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         email: currentUser.email,
+            //         role: 'user',
+            //         isVerified: false
+            //     })
+            // })
+            //     .then(res => res.json())
+            //     .then(data => {
+            //         if (data) {
+            //             console.log('user role updated')
+            //         }
+            //     })
+
+
+
             setLoading(false)
         })
         return () => {
