@@ -1,6 +1,7 @@
 // import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { FaCheckCircle } from 'react-icons/fa'
+import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
 
 
@@ -30,6 +31,29 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
     // console.log(modalData)
 
 
+    const reportTAdmin = (id) => {
+        // add reported: true to product
+        fetch(`http://localhost:5000/report/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    reported: true,
+                    reportedBy: user.email
+                }
+            )
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    toast.success('Reported to admin')
+                }
+            })
+    }
+
+
 
 
     return (
@@ -37,6 +61,11 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
             <div className='card-body flex flex-row justify-center'>
                 <img src={img} className="w-2/5 object-cover" alt="" />
                 <div className='w-3/5 p-8'>
+                    <div className='text-right'>
+                        <button className='btn btn-sm btn-error' onClick={() => reportTAdmin(_id)}>
+                            Report
+                        </button>
+                    </div>
                     <p>
                         {
                             status === 'available' ? (
@@ -111,7 +140,8 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
 
                 </div>
             </div>
-        </div>
+            <ToastContainer></ToastContainer>
+        </div >
     );
 };
 

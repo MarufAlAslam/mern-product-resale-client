@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
-import Admin from './Admin';
+// import Admin from './Admin';
+import Reported from './Admin/Reported';
 import MyProducts from './MyProducts/MyProducts';
 import UserDashboard from './UserDashboard/UserDashboard';
 
@@ -21,7 +22,21 @@ const Dashboard = () => {
             <div className='xl:w-1/5 lg:w-2/5 w-full min-h-screen bg-gray-700 p-5'>
                 {
                     loggedInUser.role === 'admin' ?
-                        <Admin></Admin>
+                        <>
+                            <h1 className='text-xl text-white font-bold'>Admin Dashboard</h1>
+                            <div className='divider'></div>
+                            <ul>
+                                <li className='text-white font-bold'>
+                                    <Link to='/dashboard/all-sellers' className='block w-full p-2 my-2 hover:bg-gray-800'>All Sellers</Link>
+                                </li>
+                                <li className='text-white font-bold'>
+                                    <Link to='/dashboard/all-buyers' className='block w-full p-2 my-2 hover:bg-gray-800'>All Buyers</Link>
+                                </li>
+                                <li className='text-white font-bold'>
+                                    <button className='block text-left w-full p-2 my-2 bg-gray-800'>Reported Items</button>
+                                </li>
+                            </ul>
+                        </>
                         :
                         loggedInUser.role === 'seller' ?
                             <>
@@ -66,7 +81,7 @@ const Dashboard = () => {
                                 <MyProducts></MyProducts>
                                 :
                                 loggedInUser.role === 'admin' ?
-                                    "Hello Admin"
+                                    <Reported></Reported>
                                     :
                                     <UserDashboard></UserDashboard>
                         )
