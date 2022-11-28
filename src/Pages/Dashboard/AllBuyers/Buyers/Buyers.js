@@ -2,26 +2,27 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
-const Sellers = () => {
+const Buyers = () => {
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: () => fetch('http://localhost:5000/users')
             .then(res => res.json())
     })
 
-    const deleteSeller = (email) => {
+    console.log(users)
+    const makeSeller = (email) => {
         fetch(`http://localhost:5000/users?email=${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ role: 'user' })
+            body: JSON.stringify({ role: 'seller' })
         })
             .then(res => res.json())
             .then(data => {
                 if (data) {
                     refetch()
-                    toast.success('Seller Profile Deleted Successfully')
+                    toast.success('User upgraded to Seller Successfully')
                 }
             })
     }
@@ -43,23 +44,6 @@ const Sellers = () => {
             })
     }
 
-    const verifySeller = (email) => {
-        fetch(`http://localhost:5000/verify?email=${email}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ isVerified: true })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data) {
-                    refetch()
-                    toast.success('Seller Verified Successfully')
-                }
-            })
-    }
-
 
 
     return (
@@ -77,7 +61,6 @@ const Sellers = () => {
                                     <tr>
                                         <th className='border px-4 py-2'>Seller's Name</th>
                                         <th className='border px-4 py-2'>Seller's Email</th>
-                                        <th className='border px-4 py-2'>Verify Seller</th>
                                         <th className='border px-4 py-2'>Delete Seler</th>
                                         <th className='border px-4 py-2'>Make Admin</th>
                                     </tr>
@@ -85,28 +68,15 @@ const Sellers = () => {
 
                                 <tbody>
                                     {
-                                        users.filter(user => user.role === 'seller').map(user => (
+                                        users.filter(user => user.role === 'user').map(user => (
                                             <tr key={user._id}>
                                                 <td className='border px-4 py-2'>
                                                     {user.email.split('@')[0]}
                                                 </td>
                                                 <td className='border px-4 py-2'>{user.email}</td>
                                                 <td className='border px-4 py-2'>
-                                                    {
-                                                        user.isVerified ? (
-                                                            <span className='text-green-500'>
-                                                                Verified
-                                                            </span>
-                                                        )
-                                                            :
-                                                            (
-                                                                <button className='bg-green-500 text-white px-4 py-2 rounded-md' onClick={() => verifySeller(user.email)}>Verify</button>
-                                                            )
-                                                    }
-                                                </td>
-                                                <td className='border px-4 py-2'>
-                                                    <button onClick={() => deleteSeller(user.email)} className='bg-red-500 text-white px-4 py-2 rounded'>
-                                                        Delete
+                                                    <button onClick={() => makeSeller(user.email)} className='btn-secondary text-white px-4 py-2 rounded'>
+                                                        Make Seller
                                                     </button>
                                                 </td>
                                                 <td className='border px-4 py-2'>
@@ -131,4 +101,4 @@ const Sellers = () => {
     );
 };
 
-export default Sellers;
+export default Buyers;

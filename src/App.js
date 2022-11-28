@@ -3,6 +3,7 @@ import './App.css';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import Blogs from './Pages/Blogs/Blogs';
 import Broken from './Pages/Broken/Broken';
+import AllBuyers from './Pages/Dashboard/AllBuyers/AllBuyers';
 import AllSellers from './Pages/Dashboard/AllSellers/AllSellers';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyBuyers from './Pages/Dashboard/MyBuyers/MyBuyers';
@@ -77,6 +78,10 @@ function App() {
         {
           path: '/dashboard/all-sellers',
           element: <PrivateRoute><AllSellers></AllSellers></PrivateRoute>,
+        },
+        {
+          path: '/dashboard/all-buyers',
+          element: <PrivateRoute><AllBuyers></AllBuyers></PrivateRoute>,
         }
       ]
     }
