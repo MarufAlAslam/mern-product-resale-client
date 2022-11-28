@@ -58,7 +58,7 @@ function App() {
         {
           path: '/category/:id',
           element: <PrivateRoute><CategoryDetails></CategoryDetails></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+          loader: ({ params }) => fetch(`https://e-trade-server-phi.vercel.app/category/${params.id}`)
         },
         {
           path: '*',

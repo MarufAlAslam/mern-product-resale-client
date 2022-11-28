@@ -8,7 +8,7 @@ const Buyers = () => {
     const { user } = useContext(AuthContext)
     const { data: bookings = [] } = useQuery({
         queryKey: 'bookings',
-        queryFn: () => fetch(`http://localhost:5000/bookings?email=${user.email}`,
+        queryFn: () => fetch(`https://e-trade-server-phi.vercel.app/bookings?email=${user.email}`,
             {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('token')}`

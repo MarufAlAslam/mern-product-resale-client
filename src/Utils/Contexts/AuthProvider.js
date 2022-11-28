@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
 
 
     // update role to user on database by email
-    // fetch(`http://localhost:5000/user?email=${user.email}`, {
+    // fetch(`https://e-trade-server-phi.vercel.app/user?email=${user.email}`, {
     //     method: 'PATCH',
     //     headers: {
     //         'Content-Type': 'application/json'
@@ -66,11 +66,11 @@ const AuthProvider = ({ children }) => {
             // check whether the user already have a role or not
             // if not then update the role to user
             if (currentUser) {
-                fetch(`http://localhost:5000/user?email=${currentUser.email}`)
+                fetch(`https://e-trade-server-phi.vercel.app/user?email=${currentUser.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.length === 0) {
-                            fetch('http://localhost:5000/user', {
+                            fetch('https://e-trade-server-phi.vercel.app/user', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ const AuthProvider = ({ children }) => {
 
             // verify jwt
             if (currentUser) {
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://e-trade-server-phi.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ const AuthProvider = ({ children }) => {
 
 
             // patch current user data to database
-            // fetch(`http://localhost:5000/user`, {
+            // fetch(`https://e-trade-server-phi.vercel.app/user`, {
             //     method: 'PATCH',
             //     headers: {
             //         'Content-Type': 'application/json'

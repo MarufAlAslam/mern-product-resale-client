@@ -1,6 +1,6 @@
 # Welcome to E-Trade
 
-Live Link: [E-Trade](https://e-trade-frontend.herokuapp.com/)
+Live Link: [E-Trade](https://e-trade-a12.web.app/)
 
 Server Side Repo Link: [E-Trade Server](https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-MarufAlAslam)
 

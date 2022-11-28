@@ -22,7 +22,7 @@ const Register = () => {
 
 
                 // post user infomation to mongo database
-                fetch('http://localhost:5000/user', {
+                fetch('https://e-trade-server-phi.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -6,7 +6,7 @@ const AdvertisedItems = () => {
 
     const { data: advertisedProducts = [], isLoading } = useQuery({
         queryKey: ['advertisedProducts'],
-        queryFn: () => fetch('http://localhost:5000/advertisedProducts')
+        queryFn: () => fetch('https://e-trade-server-phi.vercel.app/advertisedProducts')
             .then(res => res.json())
     })
     return (

@@ -5,12 +5,12 @@ import { toast, ToastContainer } from 'react-toastify';
 const Reported = () => {
     const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/products')
+        queryFn: () => fetch('https://e-trade-server-phi.vercel.app/products')
             .then(res => res.json())
     })
 
     const removeReport = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/products/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ const Reported = () => {
     }
 
     const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/products/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

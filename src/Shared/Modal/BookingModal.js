@@ -34,7 +34,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
         }
 
         // post booking data to server
-        fetch('http://localhost:5000/booking', {
+        fetch('https://e-trade-server-phi.vercel.app/booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

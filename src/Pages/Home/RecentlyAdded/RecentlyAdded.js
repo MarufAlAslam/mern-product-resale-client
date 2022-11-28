@@ -5,7 +5,7 @@ import ProductCard from '../../Products/ProductCard/ProductCard';
 const RecentlyAdded = () => {
     const { data: recents = [], isLoading } = useQuery({
         queryKey: ['recents'],
-        queryFn: () => fetch('http://localhost:5000/recents/')
+        queryFn: () => fetch('https://e-trade-server-phi.vercel.app/recents/')
             .then(res => res.json())
     })
     return (

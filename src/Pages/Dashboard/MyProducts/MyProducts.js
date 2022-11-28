@@ -12,7 +12,7 @@ const MyProducts = () => {
     const [isAdvertisement, setIsAdvertisement] = useState("no")
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch(`http://localhost:5000/productsforseller/?email=${user.email}`, {
+        queryFn: () => fetch(`https://e-trade-server-phi.vercel.app/productsforseller/?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -27,7 +27,7 @@ const MyProducts = () => {
             setStatus('available')
         }
 
-        fetch(`http://localhost:5000/products/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/products/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -54,7 +54,7 @@ const MyProducts = () => {
         else {
             setIsAdvertisement('no')
         }
-        fetch(`http://localhost:5000/advertise/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/advertise/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ const MyProducts = () => {
     }
 
     const updatePrice = (id) => {
-        fetch(`http://localhost:5000/updateprice/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/updateprice/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

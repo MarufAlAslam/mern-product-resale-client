@@ -25,7 +25,7 @@ const Login = () => {
 
                 // get jwt token
 
-                // fetch('http://localhost:5000/jwt', {
+                // fetch('https://e-trade-server-phi.vercel.app/jwt', {
                 //     method: 'POST',
                 //     headers: {
                 //         'Content-Type': 'application/json'

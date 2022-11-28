@@ -8,7 +8,7 @@ const AllSellers = () => {
     // const userData = useLoaderData()/
     const { user } = useContext(AuthContext)
     const { email } = user
-    const url = `http://localhost:5000/user?email=${user.email}`
+    const url = `https://e-trade-server-phi.vercel.app/user?email=${user.email}`
     const [role, setRole] = useState('user')
     const navigate = useNavigate()
     console.log(email, url)

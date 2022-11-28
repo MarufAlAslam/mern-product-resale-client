@@ -12,7 +12,7 @@ const Dashboard = () => {
     const { data: loggedInUser = [], isLoading } = useQuery(
         {
             queryKey: ['loggedInUser'],
-            queryFn: () => fetch(`http://localhost:5000/user?email=${user.email}`)
+            queryFn: () => fetch(`https://e-trade-server-phi.vercel.app/user?email=${user.email}`)
                 .then(res => res.json())
 
         }

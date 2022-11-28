@@ -14,7 +14,7 @@ const Payment = () => {
 
     const { data: booking = [], isLoading } = useQuery({
         queryKey: ['booking', id],
-        queryFn: () => fetch(`http://localhost:5000/booking/${id}`)
+        queryFn: () => fetch(`https://e-trade-server-phi.vercel.app/booking/${id}`)
             .then(res => res.json())
     })
     console.log(booking.price)

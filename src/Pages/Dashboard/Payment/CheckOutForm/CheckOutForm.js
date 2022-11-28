@@ -11,7 +11,7 @@ const CheckOutForm = ({ booking }) => {
     const elements = useElements()
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://e-trade-server-phi.vercel.app/create-payment-intent', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const CheckOutForm = ({ booking }) => {
         console.log("paymentIntent:", paymentIntent)
 
         // store payment info to db
-        fetch(`http://localhost:5000/booking/${booking._id}`,
+        fetch(`https://e-trade-server-phi.vercel.app/booking/${booking._id}`,
             {
                 method: 'PATCH',
                 headers: {

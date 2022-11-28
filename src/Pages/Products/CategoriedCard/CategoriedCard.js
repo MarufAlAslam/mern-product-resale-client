@@ -15,7 +15,7 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${selleremail}`)
+        fetch(`https://e-trade-server-phi.vercel.app/user?email=${selleremail}`)
             .then(res => res.json())
             .then(data => {
                 setVerified(data.isVerified);
@@ -33,7 +33,7 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
 
     const reportTAdmin = (id) => {
         // add reported: true to product
-        fetch(`http://localhost:5000/report/${id}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/report/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'

@@ -5,13 +5,13 @@ import { toast, ToastContainer } from 'react-toastify';
 const Buyers = () => {
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
-        queryFn: () => fetch('http://localhost:5000/users')
+        queryFn: () => fetch('https://e-trade-server-phi.vercel.app/users')
             .then(res => res.json())
     })
 
     console.log(users)
     const makeSeller = (email) => {
-        fetch(`http://localhost:5000/users?email=${email}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/users?email=${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ const Buyers = () => {
     }
 
     const makeAdmin = (email) => {
-        fetch(`http://localhost:5000/users?email=${email}`, {
+        fetch(`https://e-trade-server-phi.vercel.app/users?email=${email}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
