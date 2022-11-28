@@ -59,9 +59,9 @@ const Buyers = () => {
                             <table className='table w-full text-center'>
                                 <thead>
                                     <tr>
-                                        <th className='border px-4 py-2'>Seller's Name</th>
-                                        <th className='border px-4 py-2'>Seller's Email</th>
-                                        <th className='border px-4 py-2'>Delete Seler</th>
+                                        <th className='border px-4 py-2'>Buyer's Name</th>
+                                        <th className='border px-4 py-2'>Buyer's Email</th>
+                                        <th className='border px-4 py-2'>Make Seller</th>
                                         <th className='border px-4 py-2'>Make Admin</th>
                                     </tr>
                                 </thead>
