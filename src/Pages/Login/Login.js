@@ -22,6 +22,27 @@ const Login = () => {
             .then(res => {
                 console.log(res);
                 toast.success('Login Successfully')
+
+                // get jwt token
+
+                // fetch('http://localhost:5000/jwt', {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         email: data.email
+                //     })
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data);
+
+
+                //         // set jwt token to local storage
+                //         localStorage.setItem('token', data.token)
+                //         navigate(from, { replace: true })
+                //     })
                 navigate(from, { replace: true })
                 reset()
             }

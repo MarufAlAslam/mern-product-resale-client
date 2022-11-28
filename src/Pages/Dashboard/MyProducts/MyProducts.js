@@ -12,7 +12,11 @@ const MyProducts = () => {
     const [isAdvertisement, setIsAdvertisement] = useState("no")
     const { data: products = [], isLoading, refetch } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch(`http://localhost:5000/productsforseller/?email=${user.email}`)
+        queryFn: () => fetch(`http://localhost:5000/productsforseller/?email=${user.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
             .then(res => res.json())
     })
     const changeStatus = (id) => {

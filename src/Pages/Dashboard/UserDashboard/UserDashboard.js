@@ -13,10 +13,10 @@ const UserDashboard = () => {
     const navigate = useNavigate()
     console.log(email, url)
 
-    useEffect(() => {
-        axios.get(url)
-            .then(res => setRole(res.data.role))
-    }, [url])
+    // useEffect(() => {
+    //     axios.get(url)
+    //         .then(res => setRole('user))
+    // }, [url])
 
     return (
         <div>

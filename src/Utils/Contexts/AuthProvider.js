@@ -89,6 +89,28 @@ const AuthProvider = ({ children }) => {
                     })
             }
 
+            // verify jwt
+            if (currentUser) {
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: currentUser.email
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data) {
+                            console.log('jwt verified')
+                            // set token in local storage
+                            localStorage.setItem('token', data.token)
+                        }
+                    })
+            }
+
+
 
 
             // patch current user data to database
