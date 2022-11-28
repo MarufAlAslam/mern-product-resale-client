@@ -4,6 +4,7 @@ import AddProduct from './Pages/AddProduct/AddProduct';
 import Blogs from './Pages/Blogs/Blogs';
 import Broken from './Pages/Broken/Broken';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import MyBuyers from './Pages/Dashboard/MyBuyers/MyBuyers';
 import DashboardLayout from './Pages/DashboardLayout/DashboardLayout';
 import CategoryDetails from './Pages/Home/Categories/CategoryDetails/CategoryDetails';
 import Home from './Pages/Home/Home';
@@ -70,7 +71,7 @@ function App() {
         },
         {
           path: `/dashboard/my-buyers`,
-          element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
+          element: <PrivateRoute><MyBuyers></MyBuyers></PrivateRoute>,
         }
       ]
     }

@@ -1,8 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 
 const BookingModal = ({ modalData, setModalVisibility }) => {
+
 
     const bookingHandler = (e) => {
         e.preventDefault();
@@ -11,6 +13,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
         const username = form.username.value;
         const email = form.email.value;
         const productname = form.productname.value;
+        const selleremail = form.selleremail.value;
         const price = form.price.value;
         const mobile = form.mobile.value;
         const location = form.location.value;
@@ -20,6 +23,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
             email,
             productname,
             price,
+            selleremail,
             mobile,
             location
         }
@@ -87,6 +91,12 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
                                         Product Price:
                                     </label>
                                     <input type="text" name='price' disabled className='input input-bordered input-primary w-full' defaultValue={modalData.price} />
+                                </div>
+                                <div className='form-group my-3'>
+                                    <label className='block mb-2 text-sm'>
+                                        Seller Email:
+                                    </label>
+                                    <input type="text" name='selleremail' disabled className='input input-bordered input-primary w-full' defaultValue={modalData.selleremail} />
                                 </div>
                             </div>
                             <div className='w-1/2 p-4'>
