@@ -13,6 +13,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
         const username = form.username.value;
         const email = form.email.value;
         const productname = form.productname.value;
+        const productid = form.productid.value;
         const selleremail = form.selleremail.value;
         const price = form.price.value;
         const mobile = form.mobile.value;
@@ -23,6 +24,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
             username,
             email,
             productname,
+            productid,
             productimg,
             price,
             selleremail,
@@ -84,6 +86,7 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
                                 </div>
 
                                 <input type="hidden" name='productimg' disabled className='input input-bordered input-primary w-full' defaultValue={modalData.img} />
+                                <input type="hidden" name='productid' disabled className='input input-bordered input-primary w-full' defaultValue={modalData._id} />
 
                                 <div className='form-group my-3'>
                                     <label className='block mb-2 text-sm'>

@@ -7,11 +7,14 @@ import AllBuyers from './Pages/Dashboard/AllBuyers/AllBuyers';
 import AllSellers from './Pages/Dashboard/AllSellers/AllSellers';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyBuyers from './Pages/Dashboard/MyBuyers/MyBuyers';
+import Payment from './Pages/Dashboard/Payment/Payment';
 import DashboardLayout from './Pages/DashboardLayout/DashboardLayout';
 import CategoryDetails from './Pages/Home/Categories/CategoryDetails/CategoryDetails';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Main from './Pages/Main/Main';
+import CategoriedCard from './Pages/Products/CategoriedCard/CategoriedCard';
+import ProductDetails from './Pages/Products/ProductDetails/ProductDetails';
 import Products from './Pages/Products/Products';
 import Register from './Pages/Register/Register';
 import PrivateRoute from './Utils/Routes/PrivateRoute';
@@ -49,6 +52,10 @@ function App() {
           element: <Blogs></Blogs>
         },
         {
+          path: 'product-datails/:id',
+          element: <ProductDetails></ProductDetails>
+        },
+        {
           path: '/category/:id',
           element: <PrivateRoute><CategoryDetails></CategoryDetails></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
@@ -82,6 +89,10 @@ function App() {
         {
           path: '/dashboard/all-buyers',
           element: <PrivateRoute><AllBuyers></AllBuyers></PrivateRoute>,
+        },
+        {
+          path: '/dashboard/payment/:id',
+          element: <PrivateRoute><Payment></Payment></PrivateRoute>
         }
       ]
     }
