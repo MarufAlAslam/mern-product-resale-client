@@ -6,7 +6,7 @@ import './ProductCard.css'
 const ProductCard = ({ product }) => {
     const { user } = useContext(AuthContext)
     // console.log(product);
-    const { _id, img, name, price, category, seller, location, today, selleremail } = product;
+    const { _id, img, name, price, category, seller, location, today, selleremail, status } = product;
     // console.log(selleremail)
     return (
         <div className='card bg-gray-800 shadow relative productCard'>
@@ -15,6 +15,19 @@ const ProductCard = ({ product }) => {
             </span>
             <img src={img} alt="" className='productImg' />
             <div className='card-body'>
+                <p className='text-sm'>
+                    {status === 'available' ? (
+                        <span className='text-green-500'>
+                            {status}
+                        </span>
+                    ) :
+                        (
+                            <span className='text-red-500'>
+                                {status}
+                            </span>
+                        )
+                    }
+                </p>
                 <h3 className='card-title text-xl font-bold text-center'>
                     {name}
                 </h3>
@@ -43,15 +56,25 @@ const ProductCard = ({ product }) => {
                         user?.email === selleremail ? (
                             <h3 className='text-primary'>Hey! You Are The Seller of this product</h3>
                         ) : (
-                            <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
-                                Details
-                            </Link>
+
+                            status === 'available' ? (
+                                <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
+                                    Details
+                                </Link>
+                            ) : (
+                                <h3 className='text-red-500 text-center'>This Product is Sold</h3>
+                            )
+
                         )
                     ) :
                         (
-                            <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
-                                Details
-                            </Link>
+                            status === 'available' ? (
+                                <Link to={`/product-details/${_id}`} className="btn btn-primary w-full mt-4">
+                                    Details
+                                </Link>
+                            ) : (
+                                <h3 className='text-red-500 text-center'>This Product is Sold</h3>
+                            )
                         )
                 }
 

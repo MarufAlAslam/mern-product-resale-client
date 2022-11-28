@@ -67,6 +67,10 @@ function App() {
         {
           path: `/dashboard/add-product`,
           element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
+        },
+        {
+          path: `/dashboard/my-buyers`,
+          element: <PrivateRoute><AddProduct></AddProduct></PrivateRoute>,
         }
       ]
     }

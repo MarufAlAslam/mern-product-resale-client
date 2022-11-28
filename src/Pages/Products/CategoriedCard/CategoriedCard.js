@@ -7,7 +7,7 @@ import { AuthContext } from '../../../Utils/Contexts/AuthProvider';
 const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
     const currentYear = new Date().getFullYear()
     const { user } = useContext(AuthContext)
-    const { _id, img, name, description, condition, location, originalprice, price, yearofpurchase, today, seller, selleremail } = product;
+    const { _id, img, name, description, condition, location, originalprice, price, yearofpurchase, today, seller, selleremail, status } = product;
     const [verified, setVerified] = useState(false)
 
 
@@ -37,6 +37,19 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
             <div className='card-body flex flex-row justify-center'>
                 <img src={img} className="w-2/5 object-cover" alt="" />
                 <div className='w-3/5 p-8'>
+                    <p>
+                        {
+                            status === 'available' ? (
+                                <span className='text-green-500'>
+                                    {status}
+                                </span>
+                            ) : (
+                                <span className='text-red-500'>
+                                    {status}
+                                </span>
+                            )
+                        }
+                    </p>
                     <h3 className='text-xl font-bold mb-3'>{name}</h3>
                     <p>
                         {description}
@@ -84,9 +97,15 @@ const CategoriedCard = ({ product, handleModal, setModalVisibility }) => {
                         user?.email === selleremail ? (
                             <h3 className='text-primary'>Hey! You Are The Seller of this product</h3>
                         ) : (
-                            <button className='btn btn-primary w-full mt-4' onClick={() => handleModal(_id)}>
-                                Book Now
-                            </button>
+
+                            status === 'available' ? (
+                                <button className='btn btn-primary w-full mt-4' onClick={() => handleModal(_id)}>
+                                    Book Now
+                                </button>
+                            ) : (
+                                <h3 className='text-red-500 text-center mt-6'>This Product is Sold</h3>
+                            )
+
                         )
                     }
 

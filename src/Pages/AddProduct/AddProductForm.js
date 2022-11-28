@@ -66,7 +66,8 @@ const AddProductForm = () => {
                         description: data.description,
                         yearofpurchase: data.yearofpurchase,
                         today: data.today,
-                        isAdvertise: data.advertise
+                        isAdvertise: data.advertise,
+                        status: "available"
                     }
 
                     fetch('http://localhost:5000/product', {
