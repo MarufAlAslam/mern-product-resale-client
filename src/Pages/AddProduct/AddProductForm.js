@@ -66,7 +66,7 @@ const AddProductForm = () => {
                         description: data.description,
                         yearofpurchase: data.yearofpurchase,
                         today: data.today,
-                        isAdvertise: data.advertise,
+                        isAdvertise: "no",
                         status: "available"
                     }
 
@@ -200,17 +200,6 @@ const AddProductForm = () => {
 
                 <textarea cols="30" defaultValue={`${d}/${m}/${y}`} rows="1" {...register("today")} className="input input-bordered input-primary w-full hidden"></textarea>
 
-                <div className='input-field my-3'>
-                    <label className='mb-3 block'>
-                        Want to Advertise this item?
-                    </label>
-                    <select {...register("advertise", { required: true })} name="advertise" className="input input-bordered input-primary w-full">
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
-                    </select>
-
-                    {errors.advertise && <p className='text-error my-3 text-left'>Product Advertise is required</p>}
-                </div>
 
 
                 {/* <input type="text" /> */}

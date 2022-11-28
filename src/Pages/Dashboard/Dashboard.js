@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Utils/Contexts/AuthProvider';
 import Admin from './Admin';
 import MyProducts from './MyProducts/MyProducts';
+import UserDashboard from './UserDashboard/UserDashboard';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext)
@@ -45,7 +46,7 @@ const Dashboard = () => {
                                 <div className='divider'></div>
                                 <ul>
                                     <li className='text-white font-bold'>
-                                        <Link to='/my-orders' className='block w-full p-2 my-2 hover:bg-gray-800'>My Orders</Link>
+                                        <button className='block w-full p-2 my-2 text-left bg-gray-800'>My Orders</button>
                                     </li>
                                 </ul>
                             </>
@@ -64,11 +65,10 @@ const Dashboard = () => {
                             loggedInUser.role === 'seller' ?
                                 <MyProducts></MyProducts>
                                 :
-                                (
-                                    <div className='text-right'>
-                                        You are logged in as a {loggedInUser.role}
-                                    </div>
-                                )
+                                loggedInUser.role === 'admin' ?
+                                    "Hello Admin"
+                                    :
+                                    <UserDashboard></UserDashboard>
                         )
                 }
             </div>

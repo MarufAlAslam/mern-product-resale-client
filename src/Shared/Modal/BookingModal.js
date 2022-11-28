@@ -17,15 +17,18 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
         const price = form.price.value;
         const mobile = form.mobile.value;
         const location = form.location.value;
+        const productimg = form.productimg.value;
 
         const bookingData = {
             username,
             email,
             productname,
+            productimg,
             price,
             selleremail,
             mobile,
-            location
+            location,
+            isPaid: false
         }
 
         // post booking data to server
@@ -79,6 +82,8 @@ const BookingModal = ({ modalData, setModalVisibility }) => {
                                 <div className='custom-modal-body my-3'>
                                     <div className='divider'>Product info</div>
                                 </div>
+
+                                <input type="hidden" name='productimg' disabled className='input input-bordered input-primary w-full' defaultValue={modalData.img} />
 
                                 <div className='form-group my-3'>
                                     <label className='block mb-2 text-sm'>
