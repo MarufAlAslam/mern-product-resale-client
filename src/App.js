@@ -52,8 +52,9 @@ function App() {
           element: <Blogs></Blogs>
         },
         {
-          path: 'product-datails/:id',
-          element: <ProductDetails></ProductDetails>
+          path: '/product-details/:id',
+          element: <ProductDetails></ProductDetails>,
+          loader: ({ params }) => fetch(`https://e-trade-server-phi.vercel.app/product/${params.id}`)
         },
         {
           path: '/category/:id',

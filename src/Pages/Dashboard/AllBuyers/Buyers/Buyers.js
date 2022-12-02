@@ -56,40 +56,42 @@ const Buyers = () => {
                     (
                         users.length > 0 ? (
                             // filter and show only sellers
-                            <table className='table w-full text-center'>
-                                <thead>
-                                    <tr>
-                                        <th className='border px-4 py-2'>Buyer's Name</th>
-                                        <th className='border px-4 py-2'>Buyer's Email</th>
-                                        <th className='border px-4 py-2'>Make Seller</th>
-                                        <th className='border px-4 py-2'>Make Admin</th>
-                                    </tr>
-                                </thead>
+                            <div className='lg:overflow-x-hidden overflow-x-auto'>
+                                <table className='table w-full text-center'>
+                                    <thead>
+                                        <tr>
+                                            <th className='border px-4 py-2'>Buyer's Name</th>
+                                            <th className='border px-4 py-2'>Buyer's Email</th>
+                                            <th className='border px-4 py-2'>Make Seller</th>
+                                            <th className='border px-4 py-2'>Make Admin</th>
+                                        </tr>
+                                    </thead>
 
-                                <tbody>
-                                    {
-                                        users.filter(user => user.role === 'user').map(user => (
-                                            <tr key={user._id}>
-                                                <td className='border px-4 py-2'>
-                                                    {user.email.split('@')[0]}
-                                                </td>
-                                                <td className='border px-4 py-2'>{user.email}</td>
-                                                <td className='border px-4 py-2'>
-                                                    <button onClick={() => makeSeller(user.email)} className='btn-secondary text-white px-4 py-2 rounded'>
-                                                        Make Seller
-                                                    </button>
-                                                </td>
-                                                <td className='border px-4 py-2'>
-                                                    <button onClick={() => makeAdmin(user.email)} className='bg-green-500 text-white px-4 py-2 rounded'>
-                                                        Make Admin
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
+                                    <tbody>
+                                        {
+                                            users.filter(user => user.role === 'user').map(user => (
+                                                <tr key={user._id}>
+                                                    <td className='border px-4 py-2'>
+                                                        {user.email.split('@')[0]}
+                                                    </td>
+                                                    <td className='border px-4 py-2'>{user.email}</td>
+                                                    <td className='border px-4 py-2'>
+                                                        <button onClick={() => makeSeller(user.email)} className='btn-secondary text-white px-4 py-2 rounded'>
+                                                            Make Seller
+                                                        </button>
+                                                    </td>
+                                                    <td className='border px-4 py-2'>
+                                                        <button onClick={() => makeAdmin(user.email)} className='bg-green-500 text-white px-4 py-2 rounded'>
+                                                            Make Admin
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))
 
-                                    }
-                                </tbody>
-                            </table>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         )
                             :
                             "NO Sellers"

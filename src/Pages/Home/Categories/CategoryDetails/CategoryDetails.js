@@ -51,7 +51,7 @@ const CategoryDetails = () => {
                             // eslint-disable-next-line array-callback-return
                             products.map(product => {
                                 // filter by category title
-                                if (product.category === title) {
+                                if (product.category === title && product.status === 'available') {
                                     return <CategoriedCard key={product._id} product={product} setModalData={setModalData} handleModal={handleModal} setModalVisibility={setModalVisibility}></CategoriedCard>
                                 }
                             })

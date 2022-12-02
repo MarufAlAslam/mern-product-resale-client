@@ -25,29 +25,31 @@ const Buyers = () => {
             {
                 bookings.length > 0 ?
                     (
-                        <table className='table w-full border-none text-center'>
-                            <thead>
-                                <tr>
-                                    <th className='border px-4 py-2'>Buyer's Name</th>
-                                    <th className='border px-4 py-2'>Buyer's Email</th>
-                                    <th className='border px-4 py-2'>Buyer's Phone</th>
-                                    <th className='border px-4 py-2'>Buyer's Location</th>
-                                </tr>
-                            </thead>
+                        <div className='lg:overflow-x-hidden overflow-x-auto'>
+                            <table className='table w-full border-none text-center'>
+                                <thead>
+                                    <tr>
+                                        <th className='border px-4 py-2'>Buyer's Name</th>
+                                        <th className='border px-4 py-2'>Buyer's Email</th>
+                                        <th className='border px-4 py-2'>Buyer's Phone</th>
+                                        <th className='border px-4 py-2'>Buyer's Location</th>
+                                    </tr>
+                                </thead>
 
-                            <tbody>
-                                {
-                                    bookings.map(booking => (
-                                        <tr key={booking._id}>
-                                            <td className='border px-4 py-2'>{booking.username}</td>
-                                            <td className='border px-4 py-2'>{booking.email}</td>
-                                            <td className='border px-4 py-2'>{booking.mobile}</td>
-                                            <td className='border px-4 py-2'>{booking.location}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    {
+                                        bookings.map(booking => (
+                                            <tr key={booking._id}>
+                                                <td className='border px-4 py-2'>{booking.username}</td>
+                                                <td className='border px-4 py-2'>{booking.email}</td>
+                                                <td className='border px-4 py-2'>{booking.mobile}</td>
+                                                <td className='border px-4 py-2'>{booking.location}</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     )
                     :
                     (

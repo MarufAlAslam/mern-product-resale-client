@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
 const CheckOutForm = ({ booking }) => {
     const { price } = booking;
@@ -74,8 +75,25 @@ const CheckOutForm = ({ booking }) => {
 
         console.log("paymentIntent:", paymentIntent)
 
+        // change product status to sold
+        fetch(`https://e-trade-server-phi.vercel.app/availability/${booking.productid}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: 'sold' })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data) {
+                    toast.succcess('product status changed to sold')
+                }
+            })
+
+
         // store payment info to db
-        fetch(`https://e-trade-server-phi.vercel.app/booking/${booking._id}`,
+        fetch(`https://e-trade-server-phi.vercel.app/booking/${booking._id
+            }`,
             {
                 method: 'PATCH',
                 headers: {
@@ -130,6 +148,7 @@ const CheckOutForm = ({ booking }) => {
             <p>
                 Your transationId : {transationId}
             </p>
+            <ToastContainer></ToastContainer>
         </>
     );
 };
