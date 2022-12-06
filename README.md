@@ -6,6 +6,12 @@ Server Side Repo Link: [E-Trade Server](https://github.com/MarufAlAslam/mern-pro
 
 ---
 
+admin details:
+adminEmail: admin@admin.com
+adminPass: 123456
+
+---
+
 ## Features
 1. User can buy and sell products.
 2. User can see all products.
